@@ -1,0 +1,1209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.web3forms.com;"
+  />
+  <meta name="referrer" content="no-referrer" />
+  <title>Family Gifts — Download &amp; Setup</title>
+  <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-soft: #eff6ff;
+      --accent-border: #93c5fd;
+      --ok-bg: #ecfdf5;
+      --ok-text: #065f46;
+      --ok-border: #a7f3d0;
+      --warn-bg: #fffbeb;
+      --warn-text: #92400e;
+      --warn-border: #fde68a;
+      --err-bg: #fef2f2;
+      --err-text: #991b1b;
+      --err-border: #fecaca;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --card: #1e293b;
+        --text: #f1f5f9;
+        --muted: #94a3b8;
+        --border: #334155;
+        --accent: #3b82f6;
+        --accent-hover: #60a5fa;
+        --accent-soft: #172554;
+        --accent-border: #3b82f6;
+        --ok-bg: #064e3b;
+        --ok-text: #a7f3d0;
+        --ok-border: #059669;
+        --warn-bg: #451a03;
+        --warn-text: #fde68a;
+        --warn-border: #b45309;
+        --err-bg: #450a0a;
+        --err-text: #fecaca;
+        --err-border: #dc2626;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 28px 18px 56px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 15px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.24);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.65rem;
+      line-height: 1.15;
+    }
+
+    .tagline {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .card.invite-hero {
+      border: 2px solid var(--accent);
+      background: linear-gradient(180deg, var(--accent-soft) 0%, var(--card) 58%);
+    }
+
+    .card h2 {
+      margin: 0 0 6px;
+      font-size: 1.18rem;
+    }
+
+    .subtitle {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .banner {
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+      border: 1px solid transparent;
+    }
+
+    .banner.ok {
+      background: var(--ok-bg);
+      color: var(--ok-text);
+      border-color: var(--ok-border);
+    }
+
+    .banner.warn {
+      background: var(--warn-bg);
+      color: var(--warn-text);
+      border-color: var(--warn-border);
+    }
+
+    .banner.err {
+      background: var(--err-bg);
+      color: var(--err-text);
+      border-color: var(--err-border);
+    }
+
+    .hidden { display: none !important; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #ffffff;
+      text-decoration: none;
+      font: inherit;
+      font-weight: 600;
+      padding: 11px 18px;
+      border-radius: 11px;
+      border: 0;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s ease;
+    }
+
+    .btn:hover { background: var(--accent-hover); }
+    .btn:disabled { opacity: 0.65; cursor: wait; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      text-decoration: none;
+      font: inherit;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-secondary:hover { border-color: var(--accent); }
+
+    .btn-link {
+      background: none;
+      border: 0;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.84rem;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .gate-form {
+      display: grid;
+      gap: 12px;
+      max-width: 460px;
+    }
+
+    .field label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    .field input {
+      width: 100%;
+      font: inherit;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .field input:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+      border-color: var(--accent);
+    }
+
+    .field-hint {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .status-msg {
+      font-size: 0.88rem;
+      min-height: 1.25em;
+    }
+
+    .status-ok { color: #059669; font-weight: 600; }
+    .status-err { color: #dc2626; font-weight: 600; }
+
+    .downloads-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .dl-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 15px 16px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: var(--bg);
+      flex-wrap: wrap;
+    }
+
+    .dl-card.recommended {
+      border: 2px solid var(--accent);
+      background: var(--accent-soft);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.12);
+    }
+
+    .dl-meta {
+      min-width: 0;
+      flex: 1 1 240px;
+    }
+
+    .dl-title {
+      font-weight: 700;
+      font-size: 1.02rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .badge.rec {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .dl-sub {
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-top: 3px;
+    }
+
+    .dl-file {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 3px;
+      word-break: break-all;
+    }
+
+    .invite-steps {
+      display: grid;
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .step-box {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .step-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .step-box h3 {
+      margin: 0 0 6px;
+      font-size: 1.02rem;
+    }
+
+    .step-box p {
+      margin: 0 0 12px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .qr-panel {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .qr-frame {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px;
+      flex-shrink: 0;
+    }
+
+    .qr-frame svg {
+      display: block;
+      width: 140px;
+      height: 140px;
+    }
+
+    .qr-note {
+      flex: 1 1 220px;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .guide-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    details.guide {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: var(--bg);
+    }
+
+    details.guide summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.96rem;
+    }
+
+    details.guide ol,
+    details.guide ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    details.guide li { margin-bottom: 6px; }
+    details.guide strong { color: var(--text); }
+
+    code {
+      background: var(--accent-soft);
+      padding: 1px 5px;
+      border-radius: 5px;
+      font-size: 0.86em;
+    }
+
+    .unlocked-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin-top: 26px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <img src="./icon.svg" alt="Family Gifts logo" />
+      </div>
+      <div>
+        <h1>Family Gifts</h1>
+        <div class="tagline" id="header-tagline">
+          Private, peer-to-peer family gift lists &middot; Loading latest release&hellip;
+        </div>
+      </div>
+    </header>
+
+    <div id="global-banner" class="banner hidden"></div>
+
+    <!-- Invite Mode Hero (only shown when #invite=... is present) -->
+    <section id="invite-section" class="card invite-hero hidden">
+      <h2 id="invite-heading">You've been invited to Family Gifts!</h2>
+      <p class="subtitle" id="invite-subtitle">
+        Follow these two quick steps to install the app and join your family group.
+      </p>
+
+      <div class="invite-steps">
+        <div class="step-box">
+          <div class="step-label">Step 1</div>
+          <h3>Download &amp; install Family Gifts</h3>
+          <p>
+            Pick your device below (your platform is highlighted). After installing, come right
+            back to this browser tab for Step 2.
+          </p>
+          <a href="#downloads-section" class="btn-secondary">Jump to Downloads &darr;</a>
+        </div>
+
+        <div class="step-box">
+          <div class="step-label">Step 2</div>
+          <h3 id="invite-step2-title">Open &amp; join your family</h3>
+          <p>
+            Once installed, tap the button below to launch Family Gifts and join automatically.
+            If your browser doesn't open the app, tap <strong>Copy Invite Link</strong>, open
+            Family Gifts, and paste it into <strong>Join via Family Invite</strong>.
+          </p>
+          <div class="btn-row">
+            <a id="btn-open-invite" class="btn" href="#">Open &amp; Join in Family Gifts</a>
+            <button type="button" id="btn-copy-invite" class="btn-secondary">Copy Invite Link</button>
+          </div>
+          <div id="invite-copy-status" class="status-msg" style="margin-top:8px;"></div>
+
+          <div class="qr-panel" id="invite-qr-panel">
+            <div class="qr-frame" id="invite-qr-box" aria-label="Invite QR Code"></div>
+            <div class="qr-note">
+              <strong>Opened this on a computer?</strong><br />
+              Point your Android phone's camera at this QR code to open this exact invite page on
+              your phone — no typing needed.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Friends Access Gate (shown for non-invite visitors when gate is enabled) -->
+    <section id="gate-section" class="card hidden">
+      <h2>Friends &amp; Family Access</h2>
+      <p class="subtitle">
+        Enter your email and the friends passcode to unlock the installers. We only use your email
+        to know who is trying the app and let you know about updates.
+      </p>
+
+      <form id="gate-form" class="gate-form" novalidate>
+        <div class="field">
+          <label for="gate-email">Your email address</label>
+          <input
+            type="email"
+            id="gate-email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+
+        <div class="field" id="gate-passcode-field">
+          <label for="gate-passcode">Friends passcode</label>
+          <input
+            type="password"
+            id="gate-passcode"
+            autocomplete="off"
+            placeholder="Enter passcode"
+          />
+          <div class="field-hint" id="gate-passcode-hint"></div>
+        </div>
+
+        <!-- Honeypot field to block simple spam bots -->
+        <input
+          type="checkbox"
+          id="gate-botcheck"
+          tabindex="-1"
+          autocomplete="off"
+          style="position:absolute;left:-9999px;opacity:0;pointer-events:none;"
+          aria-hidden="true"
+        />
+
+        <div class="btn-row">
+          <button type="submit" id="gate-submit" class="btn">Unlock Downloads</button>
+        </div>
+        <div id="gate-status" class="status-msg"></div>
+      </form>
+    </section>
+
+    <!-- Downloads Section (always displays ALL platforms, highlights detected OS) -->
+    <section id="downloads-section" class="card hidden">
+      <h2>Download Family Gifts</h2>
+      <p class="subtitle" id="downloads-subtitle">
+        All available platforms are listed below. Your detected device is highlighted.
+      </p>
+
+      <div id="platform-note" class="banner warn hidden"></div>
+      <div id="downloads-grid" class="downloads-grid"></div>
+
+      <div id="unlocked-bar" class="unlocked-bar hidden">
+        <span id="unlocked-info"></span>
+        <button type="button" id="btn-relock" class="btn-link">Switch email / lock</button>
+      </div>
+    </section>
+
+    <!-- Setup Guide -->
+    <section id="guide-section" class="card">
+      <h2>Quick Setup Guide</h2>
+      <p class="subtitle">
+        Every family creates its own private peer-to-peer vault right on their device — no cloud
+        accounts or passwords required.
+      </p>
+
+      <div class="guide-list">
+        <details class="guide" data-guide="android">
+          <summary>Android installation &amp; updates</summary>
+          <ol>
+            <li>Tap <strong>Download</strong> on the Android APK above and open the finished file.</li>
+            <li>
+              When Android asks, allow <strong>Install unknown apps</strong> for your browser
+              (one-time prompt because Family Gifts is distributed directly, outside Google Play).
+            </li>
+            <li>
+              Open Family Gifts and either tap <strong>Create Family Vault</strong> (to start your
+              own family group) or return to your invite link to join an existing family.
+            </li>
+            <li>
+              <strong>Updating later:</strong> download the new APK and tap <strong>Update</strong>
+              — your gifts and family stay intact.
+            </li>
+          </ol>
+        </details>
+
+        <details class="guide" data-guide="windows">
+          <summary>Windows PC installation</summary>
+          <ol>
+            <li>Download and double-click the Windows <code>.exe</code> installer.</li>
+            <li>
+              If Windows SmartScreen says <em>"Windows protected your PC"</em>, click
+              <strong>More info</strong> &rarr; <strong>Run anyway</strong> (standard warning for
+              indie apps without a commercial signing certificate).
+            </li>
+            <li>
+              Open Family Gifts to start a new family vault or paste/open your family invite.
+            </li>
+          </ol>
+        </details>
+
+        <details class="guide" data-guide="linux">
+          <summary>Linux installation (.deb or .AppImage)</summary>
+          <ul>
+            <li>
+              <strong>Ubuntu / Debian (.deb):</strong> open with Software Install, or run
+              <code>sudo apt install ./Family-Gifts-*.deb</code>.
+            </li>
+            <li>
+              <strong>Universal (.AppImage):</strong> make it executable
+              (<code>chmod +x Family-Gifts-*.AppImage</code>) and run it directly.
+            </li>
+          </ul>
+        </details>
+
+        <details class="guide" data-guide="sync">
+          <summary>How family syncing &amp; spoiler protection work</summary>
+          <ul>
+            <li>
+              <strong>Built-in spoiler protection:</strong> gifts added for you are automatically
+              hidden from you (or have buyer/claim details masked if marked visible).
+            </li>
+            <li>
+              <strong>Peer-to-peer sync:</strong> devices sync directly over encrypted connections.
+              Leaving one PC open (or enabling <strong>Anchor Mode</strong> on Wi-Fi in Family &amp;
+              Settings) helps family members sync smoothly even if they aren't online at the exact
+              same moment.
+            </li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <footer>
+      Family Gifts &middot; Private peer-to-peer gift tracking &middot;
+      Invite links stay strictly inside your browser and are never sent to this server.
+    </footer>
+  </div>
+
+  <script src="./qrcode.min.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      const INVITE_PREFIX = "gifts://invite/v1/";
+      const EMAIL_RE = /^[^@\s<>"';,]+@[^@\s<>"';,]+\.[^@\s<>"';,]{2,}$/;
+      const VALID_TOKEN_RE = /^[A-Za-z0-9_-]+$/;
+      const HEX64_RE = /^[0-9a-fA-F]{64}$/;
+
+      const els = {
+        tagline: document.getElementById("header-tagline"),
+        globalBanner: document.getElementById("global-banner"),
+        inviteSection: document.getElementById("invite-section"),
+        inviteHeading: document.getElementById("invite-heading"),
+        inviteSubtitle: document.getElementById("invite-subtitle"),
+        inviteStep2Title: document.getElementById("invite-step2-title"),
+        btnOpenInvite: document.getElementById("btn-open-invite"),
+        btnCopyInvite: document.getElementById("btn-copy-invite"),
+        inviteCopyStatus: document.getElementById("invite-copy-status"),
+        inviteQrPanel: document.getElementById("invite-qr-panel"),
+        inviteQrBox: document.getElementById("invite-qr-box"),
+        gateSection: document.getElementById("gate-section"),
+        gateForm: document.getElementById("gate-form"),
+        gateEmail: document.getElementById("gate-email"),
+        gatePasscodeField: document.getElementById("gate-passcode-field"),
+        gatePasscode: document.getElementById("gate-passcode"),
+        gatePasscodeHint: document.getElementById("gate-passcode-hint"),
+        gateBotcheck: document.getElementById("gate-botcheck"),
+        gateSubmit: document.getElementById("gate-submit"),
+        gateStatus: document.getElementById("gate-status"),
+        downloadsSection: document.getElementById("downloads-section"),
+        downloadsSubtitle: document.getElementById("downloads-subtitle"),
+        platformNote: document.getElementById("platform-note"),
+        downloadsGrid: document.getElementById("downloads-grid"),
+        unlockedBar: document.getElementById("unlocked-bar"),
+        unlockedInfo: document.getElementById("unlocked-info"),
+        btnRelock: document.getElementById("btn-relock"),
+      };
+
+      const state = {
+        config: {
+          siteUrl: "https://gifts.norbo.ca",
+          requireGate: true,
+          passcodeHash: "",
+          passcodeHint: "",
+          web3formsAccessKey: "",
+        },
+        releases: null,
+        platform: detectPlatform(),
+        invite: null,
+      };
+
+      function detectPlatform() {
+        const ua = (navigator.userAgent || "").toLowerCase();
+        const uaPlat = (
+          (navigator.userAgentData && navigator.userAgentData.platform) ||
+          navigator.platform ||
+          ""
+        ).toLowerCase();
+
+        if (ua.includes("android")) return "android";
+        if (
+          ua.includes("iphone") ||
+          ua.includes("ipad") ||
+          ua.includes("ipod") ||
+          (uaPlat.includes("mac") && navigator.maxTouchPoints > 1)
+        ) {
+          return "ios";
+        }
+        if (ua.includes("windows") || uaPlat.includes("win")) return "windows";
+        if (ua.includes("mac os") || uaPlat.includes("mac")) return "macos";
+        if (ua.includes("linux") || uaPlat.includes("linux")) return "linux";
+        return "unknown";
+      }
+
+      function platformLabel(p) {
+        switch (p) {
+          case "android": return "Android";
+          case "windows": return "Windows";
+          case "linux": return "Linux";
+          case "ios": return "iPhone / iPad";
+          case "macos": return "macOS";
+          default: return "";
+        }
+      }
+
+      function showBanner(type, text) {
+        els.globalBanner.className = "banner " + type;
+        els.globalBanner.textContent = text;
+        els.globalBanner.classList.remove("hidden");
+      }
+
+      function decodeBase64Url(token) {
+        const b64 = token.replace(/-/g, "+").replace(/_/g, "/");
+        const padded = b64 + "=".repeat((4 - (b64.length % 4)) % 4);
+        const bin = atob(padded);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) {
+          bytes[i] = bin.charCodeAt(i);
+        }
+        return bytes;
+      }
+
+      function readVarint(buf, pos) {
+        let value = 0;
+        let shift = 0;
+        while (true) {
+          if (pos >= buf.length) throw new Error("Truncated invite payload.");
+          const b = buf[pos++];
+          value += (b & 0x7f) * Math.pow(2, shift);
+          if ((b & 0x80) === 0) return [value, pos];
+          shift += 7;
+          if (shift > 53) throw new Error("Invalid varint in invite payload.");
+        }
+      }
+
+      function readUtf8String(buf, pos) {
+        const [len, next] = readVarint(buf, pos);
+        const end = next + len;
+        if (end > buf.length) throw new Error("Truncated string in invite payload.");
+        const text = new TextDecoder("utf-8", { fatal: true }).decode(buf.subarray(next, end));
+        return [text, end];
+      }
+
+      /**
+       * Parses a Family Gifts v1 invite token strictly in-browser.
+       * Wire format matches crates/gifts-core/src/invite.rs (Postcard v1).
+       */
+      function decodeInviteToken(rawToken) {
+        let token = rawToken.trim();
+        if (token.startsWith(INVITE_PREFIX)) {
+          token = token.slice(INVITE_PREFIX.length);
+        }
+        if (!token || !VALID_TOKEN_RE.test(token)) {
+          throw new Error("Invalid invite token format.");
+        }
+
+        const raw = decodeBase64Url(token);
+        if (raw.length < 1 + 32) {
+          throw new Error("Invite payload is too short.");
+        }
+
+        let pos = 0;
+        const version = raw[pos++];
+        if (version !== 1) {
+          throw new Error("Unsupported invite version " + version + ".");
+        }
+
+        let vaultId;
+        [vaultId, pos] = readUtf8String(raw, pos);
+        if (pos + 32 > raw.length) {
+          throw new Error("Truncated vault key in invite payload.");
+        }
+        pos += 32; // vault_key: [u8; 32] (never exposed to DOM)
+
+        let inviterEndpointId;
+        [inviterEndpointId, pos] = readUtf8String(raw, pos);
+
+        let targetPersonId;
+        [targetPersonId, pos] = readUtf8String(raw, pos);
+
+        let targetPersonName;
+        [targetPersonName, pos] = readUtf8String(raw, pos);
+
+        if (pos !== raw.length) {
+          throw new Error("Unexpected trailing bytes in invite payload.");
+        }
+        if (!vaultId || !targetPersonId || !targetPersonName.trim()) {
+          throw new Error("Invite is missing required fields.");
+        }
+        if (!HEX64_RE.test(inviterEndpointId)) {
+          throw new Error("Invite contains an invalid peer address.");
+        }
+
+        return {
+          token,
+          uri: INVITE_PREFIX + token,
+          targetPersonName: targetPersonName.trim(),
+        };
+      }
+
+      function parseInviteFromHash() {
+        const hash = (window.location.hash || "").replace(/^#/, "").trim();
+        if (!hash) return null;
+
+        let rawToken = null;
+        if (hash.startsWith("invite=")) {
+          rawToken = decodeURIComponent(hash.slice("invite=".length).split("&")[0]);
+        } else if (hash.startsWith(INVITE_PREFIX)) {
+          rawToken = hash;
+        } else {
+          const params = new URLSearchParams(hash);
+          if (params.has("invite")) {
+            rawToken = params.get("invite");
+          }
+        }
+
+        if (!rawToken) return null;
+        return decodeInviteToken(rawToken);
+      }
+
+      async function sha256Hex(text) {
+        if (!window.crypto || !window.crypto.subtle) {
+          throw new Error("HTTPS is required to verify the passcode.");
+        }
+        const data = new TextEncoder().encode(text);
+        const digest = await window.crypto.subtle.digest("SHA-256", data);
+        return Array.from(new Uint8Array(digest))
+          .map((b) => b.toString(16).padStart(2, "0"))
+          .join("");
+      }
+
+      function unlockStorageKey() {
+        const hashKey = (state.config.passcodeHash || "open").toLowerCase();
+        return "family_gifts_unlock_" + hashKey.slice(0, 16);
+      }
+
+      function getSavedUnlock() {
+        try {
+          const raw = localStorage.getItem(unlockStorageKey());
+          if (!raw) return null;
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed.email === "string") return parsed;
+        } catch (_) {}
+        return null;
+      }
+
+      function saveUnlock(email) {
+        try {
+          localStorage.setItem(
+            unlockStorageKey(),
+            JSON.stringify({ email, at: new Date().toISOString() })
+          );
+        } catch (_) {}
+      }
+
+      function clearUnlock() {
+        try {
+          localStorage.removeItem(unlockStorageKey());
+        } catch (_) {}
+      }
+
+      function renderInviteMode(invite) {
+        els.inviteSection.classList.remove("hidden");
+        els.inviteHeading.textContent = "Welcome, " + invite.targetPersonName + "!";
+        els.inviteSubtitle.textContent =
+          "You've been invited to join a Family Gifts group as " + invite.targetPersonName + ".";
+        els.inviteStep2Title.textContent = "Open & join as " + invite.targetPersonName;
+        els.btnOpenInvite.textContent = "Open & Join as " + invite.targetPersonName;
+        els.btnOpenInvite.href = invite.uri;
+
+        els.btnCopyInvite.onclick = async () => {
+          els.inviteCopyStatus.className = "status-msg";
+          try {
+            await navigator.clipboard.writeText(invite.uri);
+            els.inviteCopyStatus.className = "status-msg status-ok";
+            els.inviteCopyStatus.textContent =
+              "Invite link copied! Open Family Gifts and paste it into Join via Family Invite.";
+          } catch (_) {
+            els.inviteCopyStatus.className = "status-msg status-err";
+            els.inviteCopyStatus.textContent =
+              "Could not copy automatically. Long-press the 'Open & Join' button and copy link address.";
+          }
+        };
+
+        if (window.FamilyGiftsQR && typeof window.FamilyGiftsQR.toString === "function") {
+          window.FamilyGiftsQR.toString(
+            window.location.href,
+            { type: "svg", margin: 2, width: 160, errorCorrectionLevel: "M" },
+            (err, svg) => {
+              if (!err && svg) {
+                els.inviteQrBox.innerHTML = svg;
+              } else {
+                els.inviteQrPanel.classList.add("hidden");
+              }
+            }
+          );
+        } else {
+          els.inviteQrPanel.classList.add("hidden");
+        }
+      }
+
+      function renderDownloads() {
+        els.downloadsSection.classList.remove("hidden");
+        els.downloadsGrid.innerHTML = "";
+
+        const detected = state.platform;
+        if (detected === "ios" || detected === "macos") {
+          els.platformNote.textContent =
+            "Note: " +
+            platformLabel(detected) +
+            " builds aren't available yet. Family Gifts currently supports Android, Windows, and Linux — all installers are listed below.";
+          els.platformNote.classList.remove("hidden");
+        } else {
+          els.platformNote.classList.add("hidden");
+        }
+
+        const list = (state.releases && Array.isArray(state.releases.downloads))
+          ? state.releases.downloads.slice()
+          : [];
+
+        if (list.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "banner warn";
+          empty.textContent = "No release installers are published yet. Check back soon!";
+          els.downloadsGrid.appendChild(empty);
+          return;
+        }
+
+        // Move detected platform card(s) to the top while keeping ALL platforms visible.
+        list.sort((a, b) => {
+          const aRec = a.platform === detected ? 0 : 1;
+          const bRec = b.platform === detected ? 0 : 1;
+          return aRec - bRec;
+        });
+
+        for (const item of list) {
+          const isRec = item.platform === detected;
+          const card = document.createElement("div");
+          card.className = "dl-card" + (isRec ? " recommended" : "");
+
+          const meta = document.createElement("div");
+          meta.className = "dl-meta";
+
+          const titleRow = document.createElement("div");
+          titleRow.className = "dl-title";
+          titleRow.appendChild(document.createTextNode(item.title));
+
+          const extBadge = document.createElement("span");
+          extBadge.className = "badge";
+          extBadge.textContent = item.badge || item.platform.toUpperCase();
+          titleRow.appendChild(extBadge);
+
+          if (isRec) {
+            const recBadge = document.createElement("span");
+            recBadge.className = "badge rec";
+            recBadge.textContent = "Recommended for your device";
+            titleRow.appendChild(recBadge);
+          }
+
+          const sub = document.createElement("div");
+          sub.className = "dl-sub";
+          const parts = [];
+          if (item.subtitle) parts.push(item.subtitle);
+          if (item.version) parts.push("v" + item.version);
+          if (item.sizeLabel) parts.push(item.sizeLabel);
+          sub.textContent = parts.join(" \u00b7 ");
+
+          const file = document.createElement("div");
+          file.className = "dl-file";
+          file.textContent = item.filename || "";
+
+          meta.appendChild(titleRow);
+          meta.appendChild(sub);
+          meta.appendChild(file);
+
+          const link = document.createElement("a");
+          link.className = "btn";
+          link.href = item.url;
+          link.setAttribute("download", item.filename || "");
+          link.textContent = "Download";
+
+          card.appendChild(meta);
+          card.appendChild(link);
+          els.downloadsGrid.appendChild(card);
+        }
+
+        const saved = getSavedUnlock();
+        if (!state.invite && state.config.requireGate && saved) {
+          els.unlockedInfo.textContent = "Unlocked for " + saved.email;
+          els.unlockedBar.classList.remove("hidden");
+        } else {
+          els.unlockedBar.classList.add("hidden");
+        }
+      }
+
+      function configureGuides() {
+        const guides = document.querySelectorAll("details.guide");
+        const target =
+          state.platform === "android" ||
+          state.platform === "windows" ||
+          state.platform === "linux"
+            ? state.platform
+            : "android";
+        guides.forEach((d) => {
+          d.open = d.getAttribute("data-guide") === target;
+        });
+      }
+
+      function configureGate() {
+        const hasPasscode = Boolean(state.config.passcodeHash && state.config.passcodeHash.trim());
+        els.gatePasscodeField.classList.toggle("hidden", !hasPasscode);
+        els.gatePasscode.required = hasPasscode;
+        els.gatePasscodeHint.textContent = state.config.passcodeHint || "";
+
+        if (state.invite || !state.config.requireGate || getSavedUnlock()) {
+          els.gateSection.classList.add("hidden");
+          renderDownloads();
+        } else {
+          els.gateSection.classList.remove("hidden");
+          els.downloadsSection.classList.add("hidden");
+        }
+      }
+
+      async function notifyWeb3Forms(email) {
+        const key = (state.config.web3formsAccessKey || "").trim();
+        if (!key) return;
+        // Privacy: never include window.location.href or any #invite fragment.
+        const payload = {
+          access_key: key,
+          subject: "Family Gifts download access: " + email,
+          from_name: "Family Gifts Downloads",
+          email: email,
+          platform: platformLabel(state.platform) || state.platform,
+          version: (state.releases && state.releases.version) || "",
+          message:
+            "Email: " +
+            email +
+            "\nDetected OS: " +
+            (platformLabel(state.platform) || state.platform) +
+            "\nTime (UTC): " +
+            new Date().toISOString(),
+        };
+        try {
+          await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+        } catch (_) {
+          // Do not block a verified friend if the email notification endpoint is momentarily slow.
+        }
+      }
+
+      els.gateForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (els.gateBotcheck.checked) return;
+
+        els.gateStatus.className = "status-msg";
+        els.gateStatus.textContent = "";
+
+        const email = els.gateEmail.value.trim();
+        if (!EMAIL_RE.test(email)) {
+          els.gateStatus.className = "status-msg status-err";
+          els.gateStatus.textContent = "Please enter a valid email address.";
+          els.gateEmail.focus();
+          return;
+        }
+
+        const expectedHash = (state.config.passcodeHash || "").trim().toLowerCase();
+        if (expectedHash) {
+          const entered = els.gatePasscode.value.trim().toLowerCase();
+          if (!entered) {
+            els.gateStatus.className = "status-msg status-err";
+            els.gateStatus.textContent = "Please enter the friends passcode.";
+            els.gatePasscode.focus();
+            return;
+          }
+          try {
+            const actualHash = await sha256Hex(entered);
+            if (actualHash !== expectedHash) {
+              els.gateStatus.className = "status-msg status-err";
+              els.gateStatus.textContent = "That passcode didn't match. Please try again.";
+              els.gatePasscode.select();
+              return;
+            }
+          } catch (err) {
+            els.gateStatus.className = "status-msg status-err";
+            els.gateStatus.textContent = err.message || "Unable to verify passcode.";
+            return;
+          }
+        }
+
+        els.gateSubmit.disabled = true;
+        els.gateSubmit.textContent = "Unlocking\u2026";
+        await notifyWeb3Forms(email);
+        saveUnlock(email);
+        els.gateSubmit.disabled = false;
+        els.gateSubmit.textContent = "Unlock Downloads";
+        els.gateSection.classList.add("hidden");
+        renderDownloads();
+      });
+
+      els.btnRelock.addEventListener("click", () => {
+        clearUnlock();
+        els.gatePasscode.value = "";
+        els.gateStatus.textContent = "";
+        configureGate();
+      });
+
+      async function loadJson(path) {
+        const res = await fetch(path, { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to load " + path + " (" + res.status + ")");
+        return res.json();
+      }
+
+      async function boot() {
+        configureGuides();
+
+        // 1. Parse optional #invite=... strictly in browser.
+        if (window.location.hash && window.location.hash.length > 1) {
+          try {
+            state.invite = parseInviteFromHash();
+            if (state.invite) {
+              renderInviteMode(state.invite);
+            }
+          } catch (err) {
+            showBanner(
+              "err",
+              "This invite link looks incomplete or corrupted (" +
+                err.message +
+                "). Ask the sender to resend it."
+            );
+          }
+        }
+
+        // 2. Load site config & release manifest.
+        try {
+          const [cfg, rel] = await Promise.all([
+            loadJson("./config.json"),
+            loadJson("./releases.json"),
+          ]);
+          state.config = Object.assign({}, state.config, cfg || {});
+          state.releases = rel;
+
+          const verText = rel && rel.version ? "v" + rel.version : "Latest release";
+          const platText = platformLabel(state.platform);
+          els.tagline.textContent =
+            "Private, peer-to-peer family gift lists \u00b7 " +
+            verText +
+            (platText ? " \u00b7 Detected: " + platText : "");
+        } catch (err) {
+          showBanner(
+            "err",
+            "Could not load release info. Refresh the page or try again in a moment."
+          );
+          els.tagline.textContent = "Private, peer-to-peer family gift lists";
+        }
+
+        configureGate();
+      }
+
+      window.addEventListener("hashchange", () => {
+        window.location.reload();
+      });
+
+      boot();
+    })();
+  </script>
+</body>
+</html>
