@@ -1,6 +1,6 @@
 {
-  "version": "0.1.3",
-  "updatedAt": "2026-11-27T01:02:05Z",
+  "version": "0.1.4",
+  "updatedAt": "2026-11-27T14:32:24Z",
   "repo": "PopsOfTheNord/family-gifts-downloads",
   "downloads": [
     {
@@ -9,11 +9,11 @@
       "title": "Android Phone / Tablet",
       "subtitle": "Direct install APK (Android 7+)",
       "badge": "APK",
-      "filename": "Family-Gifts-0.1.3-android-arm64.apk",
-      "version": "0.1.3",
-      "sizeBytes": 39790369,
-      "sizeLabel": "37.9 MB",
-      "url": "https://github.com/PopsOfTheNord/family-gifts-downloads/releases/download/v0.1.3/Family-Gifts-0.1.3-android-arm64.apk"
+      "filename": "Family-Gifts-0.1.4-android-arm64.apk",
+      "version": "0.1.4",
+      "sizeBytes": 40019745,
+      "sizeLabel": "38.2 MB",
+      "url": "https://github.com/PopsOfTheNord/family-gifts-downloads/releases/download/v0.1.4/Family-Gifts-0.1.4-android-arm64.apk"
     },
     {
       "id": "windows-exe",
@@ -21,11 +21,11 @@
       "title": "Windows PC",
       "subtitle": "Windows 10 / 11 installer (64-bit)",
       "badge": "EXE",
-      "filename": "Family-Gifts-0.1.3-windows-x64-setup.exe",
-      "version": "0.1.3",
-      "sizeBytes": 7220312,
+      "filename": "Family-Gifts-0.1.4-windows-x64-setup.exe",
+      "version": "0.1.4",
+      "sizeBytes": 7246506,
       "sizeLabel": "6.9 MB",
-      "url": "https://github.com/PopsOfTheNord/family-gifts-downloads/releases/download/v0.1.3/Family-Gifts-0.1.3-windows-x64-setup.exe"
+      "url": "https://github.com/PopsOfTheNord/family-gifts-downloads/releases/download/v0.1.4/Family-Gifts-0.1.4-windows-x64-setup.exe"
     },
     {
       "id": "linux-deb",
@@ -33,11 +33,11 @@
       "title": "Linux (Ubuntu / Debian)",
       "subtitle": "Native .deb package (64-bit)",
       "badge": "DEB",
-      "filename": "Family-Gifts-0.1.3-linux-amd64.deb",
-      "version": "0.1.3",
-      "sizeBytes": 14336312,
+      "filename": "Family-Gifts-0.1.4-linux-amd64.deb",
+      "version": "0.1.4",
+      "sizeBytes": 14400778,
       "sizeLabel": "13.7 MB",
-      "url": "https://github.com/PopsOfTheNord/family-gifts-downloads/releases/download/v0.1.3/Family-Gifts-0.1.3-linux-amd64.deb"
+      "url": "https://github.com/PopsOfTheNord/family-gifts-downloads/releases/download/v0.1.4/Family-Gifts-0.1.4-linux-amd64.deb"
     },
     {
       "id": "linux-appimage",
@@ -45,11 +45,11 @@
       "title": "Linux (Universal AppImage)",
       "subtitle": "Portable executable for most distros (64-bit)",
       "badge": "AppImage",
-      "filename": "Family-Gifts-0.1.3-linux-amd64.AppImage",
-      "version": "0.1.3",
-      "sizeBytes": 96946680,
+      "filename": "Family-Gifts-0.1.4-linux-amd64.AppImage",
+      "version": "0.1.4",
+      "sizeBytes": 96975352,
       "sizeLabel": "92.5 MB",
-      "url": "https://github.com/PopsOfTheNord/family-gifts-downloads/releases/download/v0.1.3/Family-Gifts-0.1.3-linux-amd64.AppImage"
+      "url": "https://github.com/PopsOfTheNord/family-gifts-downloads/releases/download/v0.1.4/Family-Gifts-0.1.4-linux-amd64.AppImage"
     }
   ]
 }
