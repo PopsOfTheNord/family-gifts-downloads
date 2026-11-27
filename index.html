@@ -8,20 +8,48 @@
     content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.web3forms.com;"
   />
   <meta name="referrer" content="strict-origin" />
-  <title>Family Gifts — Download &amp; Setup</title>
+  <title>Family Gifts — Private gift lists for the whole family</title>
+  <meta
+    name="description"
+    content="Family Gifts keeps your family's gift ideas in one place — claim gifts so nobody buys the same thing twice, and the person you're shopping for never sees a spoiler. No accounts, no cloud. For Android, Windows and Linux."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Family Gifts" />
+  <meta property="og:title" content="Family Gifts — Gift ideas for the whole family, without spoiling the surprise" />
+  <meta
+    property="og:description"
+    content="Claim gifts so nobody doubles up, keep surprises secret, and keep your data on your family's own devices. No accounts, no cloud."
+  />
+  <meta property="og:url" content="https://gifts.norbo.ca/" />
+  <meta name="theme-color" content="#1f1b4d" />
   <link rel="icon" type="image/svg+xml" href="./icon.svg" />
   <style>
     :root {
       color-scheme: light dark;
-      --bg: #f8fafc;
+      --bg: #fffaf8;
+      --bg-alt: #fff1ee;
       --card: #ffffff;
-      --text: #0f172a;
-      --muted: #475569;
-      --border: #e2e8f0;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
-      --accent-soft: #eff6ff;
-      --accent-border: #93c5fd;
+      --text: #1f1b4d;
+      --muted: #55527a;
+      --border: #eadff0;
+      --accent: #cf3a55;
+      --accent-hover: #b92e48;
+      --on-accent: #ffffff;
+      --accent-soft: #ffeef0;
+      --accent-border: #f5a3b1;
+      --indigo: #3b2f9e;
+      --glow-1: rgba(255, 122, 143, 0.35);
+      --glow-2: rgba(124, 92, 255, 0.22);
+      --hero-grad: linear-gradient(165deg, #fff1ee 0%, #f6e9ff 55%, #e7e9ff 100%);
+      --shadow: 0 10px 30px rgba(59, 47, 158, 0.12);
+      --phone-bg: #ffffff;
+      --phone-edge: #1f1b4d;
+      --chip-claimed-bg: #ffe3e8;
+      --chip-claimed-fg: #a3223c;
+      --chip-done-bg: #dcf8e8;
+      --chip-done-fg: #0b6b3a;
+      --chip-open-bg: #eceaf7;
+      --chip-open-fg: #55527a;
       --ok-bg: #ecfdf5;
       --ok-text: #065f46;
       --ok-border: #a7f3d0;
@@ -35,15 +63,30 @@
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0f172a;
-        --card: #1e293b;
-        --text: #f1f5f9;
-        --muted: #94a3b8;
-        --border: #334155;
-        --accent: #3b82f6;
-        --accent-hover: #60a5fa;
-        --accent-soft: #172554;
-        --accent-border: #3b82f6;
+        --bg: #12102b;
+        --bg-alt: #181538;
+        --card: #1c1a3f;
+        --text: #f3f1ff;
+        --muted: #b1add9;
+        --border: #34306a;
+        --accent: #ff7a8f;
+        --accent-hover: #ff97a7;
+        --on-accent: #2a0f1c;
+        --accent-soft: #3a2046;
+        --accent-border: #ff7a8f;
+        --indigo: #a99bff;
+        --glow-1: rgba(255, 122, 143, 0.22);
+        --glow-2: rgba(124, 92, 255, 0.3);
+        --hero-grad: linear-gradient(165deg, #1b1546 0%, #2a1548 55%, #1a1a4f 100%);
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        --phone-bg: #231f4f;
+        --phone-edge: #0b0920;
+        --chip-claimed-bg: #4a2040;
+        --chip-claimed-fg: #ffb3c0;
+        --chip-done-bg: #123d2c;
+        --chip-done-fg: #8ef0bb;
+        --chip-open-bg: #302c63;
+        --chip-open-fg: #c5c1ee;
         --ok-bg: #064e3b;
         --ok-text: #a7f3d0;
         --ok-border: #059669;
@@ -58,599 +101,762 @@
 
     * { box-sizing: border-box; }
 
+    html { scroll-padding-top: 16px; }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
-    .wrap {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 28px 18px 56px;
-    }
+    a { color: var(--accent); }
 
-    header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-
-    .logo {
-      width: 60px;
-      height: 60px;
-      border-radius: 15px;
-      overflow: hidden;
-      flex-shrink: 0;
-      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.24);
-    }
-
-    .logo img {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 1.65rem;
-      line-height: 1.15;
-    }
-
-    .tagline {
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
-    }
-
-    .card.invite-hero {
-      border: 2px solid var(--accent);
-      background: linear-gradient(180deg, var(--accent-soft) 0%, var(--card) 58%);
-    }
-
-    .card h2 {
-      margin: 0 0 6px;
-      font-size: 1.18rem;
-    }
-
-    .subtitle {
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .banner {
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-size: 0.92rem;
-      margin-bottom: 16px;
-      border: 1px solid transparent;
-    }
-
-    .banner.ok {
-      background: var(--ok-bg);
-      color: var(--ok-text);
-      border-color: var(--ok-border);
-    }
-
-    .banner.warn {
-      background: var(--warn-bg);
-      color: var(--warn-text);
-      border-color: var(--warn-border);
-    }
-
-    .banner.err {
-      background: var(--err-bg);
-      color: var(--err-text);
-      border-color: var(--err-border);
-    }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+    .narrow { max-width: 780px; margin: 0 auto; padding: 0 20px; }
 
     .hidden { display: none !important; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: var(--accent);
-      color: #ffffff;
-      text-decoration: none;
-      font: inherit;
-      font-weight: 600;
-      padding: 11px 18px;
-      border-radius: 11px;
-      border: 0;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.15s ease;
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap;
     }
 
+    .ico { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    /* ---------- Top bar ---------- */
+    .topbar { display: flex; align-items: center; gap: 14px; padding: 18px 0; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); font-weight: 800; font-size: 1.15rem; }
+    .logo { width: 40px; height: 40px; border-radius: 11px; overflow: hidden; box-shadow: 0 4px 12px rgba(207, 58, 85, 0.3); }
+    .logo img { width: 100%; height: 100%; display: block; }
+    .topnav { margin-left: auto; display: flex; align-items: center; gap: 20px; }
+    .topnav a.link { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.94rem; }
+    .topnav a.link:hover { color: var(--text); }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--accent); color: var(--on-accent); text-decoration: none;
+      font: inherit; font-weight: 700; padding: 11px 18px; border-radius: 12px;
+      border: 0; cursor: pointer; white-space: nowrap;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
     .btn:hover { background: var(--accent-hover); }
     .btn:disabled { opacity: 0.65; cursor: wait; }
+    .btn.big { padding: 14px 24px; font-size: 1.05rem; border-radius: 14px; box-shadow: 0 8px 22px rgba(207, 58, 85, 0.35); }
+    .btn.big:hover { transform: translateY(-1px); }
 
     .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      text-decoration: none;
-      font: inherit;
-      font-weight: 600;
-      padding: 10px 16px;
-      border-radius: 11px;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      white-space: nowrap;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: transparent; color: var(--text); text-decoration: none;
+      font: inherit; font-weight: 700; padding: 10px 16px; border-radius: 12px;
+      border: 1px solid var(--border); cursor: pointer; white-space: nowrap;
     }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-secondary.big { padding: 13px 22px; font-size: 1.05rem; border-radius: 14px; }
 
-    .btn-secondary:hover { border-color: var(--accent); }
+    .btn-link { background: none; border: 0; color: var(--muted); font: inherit; font-size: 0.84rem; text-decoration: underline; cursor: pointer; padding: 0; }
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 
-    .btn-link {
-      background: none;
-      border: 0;
-      color: var(--muted);
-      font: inherit;
-      font-size: 0.84rem;
-      text-decoration: underline;
-      cursor: pointer;
-      padding: 0;
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative; overflow: hidden; background: var(--hero-grad);
+      border-bottom: 1px solid var(--border);
     }
-
-    .gate-form {
-      display: grid;
-      gap: 12px;
-      max-width: 460px;
+    .hero::before, .hero::after {
+      content: ""; position: absolute; border-radius: 50%; pointer-events: none; filter: blur(10px);
     }
-
-    .field label {
-      display: block;
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-bottom: 5px;
+    .hero::before { width: 420px; height: 420px; right: -80px; top: -120px; background: radial-gradient(circle, var(--glow-1), transparent 70%); }
+    .hero::after { width: 460px; height: 460px; left: -140px; bottom: -200px; background: radial-gradient(circle, var(--glow-2), transparent 70%); }
+    .hero .wrap { position: relative; z-index: 1; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; padding: 28px 0 64px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 700;
+      padding: 5px 12px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); color: var(--muted);
     }
-
-    .field input {
-      width: 100%;
-      font: inherit;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--text);
+    .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    h1.headline { font-size: clamp(2.1rem, 5vw, 3.3rem); line-height: 1.08; letter-spacing: -0.02em; margin: 18px 0 16px; }
+    h1.headline em { font-style: normal; color: var(--accent); }
+    .lede { font-size: 1.15rem; color: var(--muted); max-width: 34em; margin: 0 0 26px; }
+    .plat-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 22px; }
+    .plat-chip {
+      font-size: 0.84rem; font-weight: 700; padding: 5px 12px; border-radius: 999px;
+      background: var(--card); border: 1px solid var(--border); color: var(--muted);
     }
+    .plat-chip.on { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 
-    .field input:focus {
-      outline: 2px solid var(--accent);
-      outline-offset: 1px;
-      border-color: var(--accent);
+    /* ---------- Phone mockups ---------- */
+    .mock { display: flex; justify-content: center; position: relative; }
+    .phone {
+      width: clamp(236px, 72vw, 270px); background: var(--phone-bg); border: 8px solid var(--phone-edge);
+      border-radius: 34px; padding: 18px 14px 16px; box-shadow: var(--shadow); position: relative; text-align: left;
     }
-
-    .field-hint {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-top: 4px;
+    .phone::before {
+      content: ""; display: block; width: 64px; height: 6px; border-radius: 6px; background: var(--phone-edge);
+      opacity: 0.8; margin: -6px auto 12px;
     }
-
-    .status-msg {
-      font-size: 0.88rem;
-      min-height: 1.25em;
+    .ph-title { font-weight: 800; font-size: 1.02rem; }
+    .ph-sub { font-size: 0.76rem; color: var(--muted); margin-bottom: 10px; }
+    .ph-item {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 9px; border-radius: 14px;
+      background: var(--bg); border: 1px solid var(--border); margin-bottom: 8px;
     }
-
-    .status-ok { color: #059669; font-weight: 600; }
-    .status-err { color: #dc2626; font-weight: 600; }
-
-    .downloads-grid {
-      display: grid;
-      gap: 12px;
+    .ph-thumb { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; font-size: 1.15rem; flex-shrink: 0; background: var(--accent-soft); }
+    .ph-info { min-width: 0; flex: 1 1 96px; line-height: 1.25; }
+    .ph-info b { display: block; font-size: 0.84rem; }
+    .ph-info span { font-size: 0.75rem; color: var(--muted); }
+    .chip { margin-left: auto; font-size: 0.66rem; font-weight: 800; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+    .chip.claimed { background: var(--chip-claimed-bg); color: var(--chip-claimed-fg); }
+    .chip.done { background: var(--chip-done-bg); color: var(--chip-done-fg); }
+    .chip.open { background: var(--chip-open-bg); color: var(--chip-open-fg); }
+    .ph-note {
+      display: flex; gap: 8px; align-items: center; margin-top: 10px; padding: 9px 10px; border-radius: 12px;
+      background: var(--accent-soft); color: var(--text); font-size: 0.72rem; font-weight: 600;
     }
-
-    .dl-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 15px 16px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      background: var(--bg);
-      flex-wrap: wrap;
+    .ph-note .ico { width: 16px; height: 16px; color: var(--accent); }
+    .float-chip {
+      position: absolute; display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 9px 13px; font-size: 0.82rem; font-weight: 700; box-shadow: var(--shadow);
+      animation: bob 5s ease-in-out infinite;
     }
-
-    .dl-card.recommended {
-      border: 2px solid var(--accent);
-      background: var(--accent-soft);
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.12);
+    .float-chip .ico { width: 18px; height: 18px; color: var(--accent); }
+    .float-chip { display: none; font-size: 0.78rem; padding: 8px 11px; }
+    @media (min-width: 861px) {
+      .float-chip { display: flex; }
+      .float-chip.a { right: calc(50% + 120px); top: 14%; }
+      .float-chip.b { left: calc(50% + 120px); bottom: 16%; animation-delay: -2.5s; }
     }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 
-    .dl-meta {
-      min-width: 0;
-      flex: 1 1 240px;
+    /* ---------- Sections ---------- */
+    section.block { padding: 72px 0; }
+    section.alt { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .eyebrow { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
+    h2.section-title { font-size: clamp(1.6rem, 3.4vw, 2.2rem); line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 12px; }
+    .section-lede { color: var(--muted); font-size: 1.05rem; max-width: 40em; margin: 0 0 34px; }
+    .center { text-align: center; }
+    .center .section-lede { margin-left: auto; margin-right: auto; }
+
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feature { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 22px; box-shadow: 0 2px 10px rgba(59, 47, 158, 0.05); }
+    .feature .ficon { width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); margin-bottom: 14px; }
+    .feature h3 { margin: 0 0 6px; font-size: 1.08rem; }
+    .feature p { margin: 0; color: var(--muted); font-size: 0.94rem; }
+
+    .spot { display: grid; grid-template-columns: 1fr 1.2fr; gap: 44px; align-items: center; }
+    .spot-phones { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; }
+    .spot-phones figure { margin: 0; text-align: center; }
+    .spot-phones figcaption { margin-top: 12px; font-size: 0.88rem; font-weight: 700; color: var(--muted); }
+    .spot-phones .phone { width: clamp(236px, 72vw, 250px); }
+    .ticks { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+    .ticks li { display: flex; gap: 12px; color: var(--muted); }
+    .ticks li strong { color: var(--text); }
+    .ticks .ico { color: var(--accent); margin-top: 2px; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
+    .step { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 22px; position: relative; }
+    .step::before {
+      counter-increment: step; content: counter(step); display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+      background: var(--accent); color: var(--on-accent); font-weight: 800; margin-bottom: 12px;
     }
+    .step h3 { margin: 0 0 6px; font-size: 1.08rem; }
+    .step p { margin: 0; color: var(--muted); font-size: 0.94rem; }
 
-    .dl-title {
-      font-weight: 700;
-      font-size: 1.02rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+    .privacy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .pcard { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 22px; }
+    .pcard .ico { color: var(--indigo); width: 28px; height: 28px; margin-bottom: 10px; }
+    .pcard h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .pcard p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+    .pcard strong { color: var(--text); }
+
+    /* ---------- Cards (gate, downloads, invite) ---------- */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 22px; margin-bottom: 18px; box-shadow: var(--shadow); }
+    .card.invite-hero { border: 2px solid var(--accent); background: linear-gradient(180deg, var(--accent-soft) 0%, var(--card) 58%); }
+    .card h2 { margin: 0 0 6px; font-size: 1.3rem; }
+    .subtitle { margin: 0 0 14px; color: var(--muted); font-size: 0.96rem; }
+
+    .banner { border-radius: 12px; padding: 12px 14px; font-size: 0.92rem; margin-bottom: 16px; border: 1px solid transparent; }
+    .banner.ok { background: var(--ok-bg); color: var(--ok-text); border-color: var(--ok-border); }
+    .banner.warn { background: var(--warn-bg); color: var(--warn-text); border-color: var(--warn-border); }
+    .banner.err { background: var(--err-bg); color: var(--err-text); border-color: var(--err-border); }
+    .top-banner { margin-top: 4px; }
+
+    .gate-form { display: grid; gap: 12px; max-width: 460px; }
+    .field label { display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 5px; }
+    .field input { width: 100%; font: inherit; padding: 11px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
+    .field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+    .field-hint { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+    .status-msg { font-size: 0.88rem; min-height: 1.25em; }
+    .status-ok { color: #059669; font-weight: 700; }
+    .status-err { color: #dc2626; font-weight: 700; }
+
+    .downloads-grid { display: grid; gap: 12px; }
+    .dl-card { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 15px 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--bg); flex-wrap: wrap; }
+    .dl-card.recommended { border: 2px solid var(--accent); background: var(--accent-soft); box-shadow: 0 4px 14px rgba(207, 58, 85, 0.14); }
+    .dl-meta { min-width: 0; flex: 1 1 240px; }
+    .dl-title { font-weight: 800; font-size: 1.02rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .badge { font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); color: var(--muted); }
+    .badge.rec { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+    .dl-sub { color: var(--muted); font-size: 0.86rem; margin-top: 3px; }
+    .dl-file { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.78rem; color: var(--muted); margin-top: 3px; word-break: break-all; }
+
+    .invite-steps { display: grid; gap: 16px; margin-top: 12px; }
+    .step-box { padding: 14px 16px; border-radius: 12px; background: var(--card); border: 1px solid var(--border); }
+    .step-label { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin-bottom: 4px; }
+    .step-box h3 { margin: 0 0 6px; font-size: 1.02rem; }
+    .step-box p { margin: 0 0 12px; font-size: 0.92rem; color: var(--muted); }
+    .qr-panel { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border); }
+    .qr-frame { background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 8px; flex-shrink: 0; }
+    .qr-frame svg { display: block; width: 140px; height: 140px; }
+    .qr-note { flex: 1 1 220px; font-size: 0.88rem; color: var(--muted); }
+
+    .unlocked-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 0.84rem; color: var(--muted); }
+    .release-notes { margin: 0 0 14px; padding: 12px 14px; border-radius: 12px; background: var(--bg); border: 1px solid var(--border); font-size: 0.9rem; }
+    .release-notes-title { font-weight: 800; margin-bottom: 6px; }
+    .release-notes ul { margin: 0; padding-left: 18px; color: var(--muted); }
+    .release-notes li { margin-bottom: 4px; }
+
+    /* ---------- Accordions (setup guide + FAQ) ---------- */
+    .acc-list { display: grid; gap: 10px; }
+    details.acc { border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; background: var(--card); }
+    details.acc summary { cursor: pointer; font-weight: 700; font-size: 0.98rem; }
+    details.acc[open] summary { color: var(--accent); }
+    details.acc ol, details.acc ul { margin: 10px 0 0; padding-left: 20px; color: var(--muted); font-size: 0.93rem; }
+    details.acc li { margin-bottom: 6px; }
+    details.acc p { margin: 10px 0 0; color: var(--muted); font-size: 0.93rem; }
+    details.acc strong { color: var(--text); }
+    code { background: var(--accent-soft); padding: 1px 5px; border-radius: 5px; font-size: 0.86em; }
+    .sub-head { font-size: 1.15rem; margin: 30px 0 12px; }
+
+    footer { text-align: center; color: var(--muted); font-size: 0.86rem; padding: 36px 20px 48px; border-top: 1px solid var(--border); }
+
+    /* Invite mode: trim the marketing so the invite is the first thing seen. */
+    body.invite-mode .marketing { display: none !important; }
+    body.invite-mode .topnav a.link { display: none; }
+
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; padding-bottom: 48px; }
+      .features, .steps, .privacy-grid { grid-template-columns: 1fr; }
+      .spot { grid-template-columns: 1fr; gap: 28px; }
+      section.block { padding: 52px 0; }
+      .topnav a.link { display: none; }
     }
-
-    .badge {
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--muted);
+    @media (min-width: 861px) and (max-width: 1000px) {
+      .features { grid-template-columns: repeat(2, 1fr); }
     }
-
-    .badge.rec {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #ffffff;
-    }
-
-    .dl-sub {
-      color: var(--muted);
-      font-size: 0.86rem;
-      margin-top: 3px;
-    }
-
-    .dl-file {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 3px;
-      word-break: break-all;
-    }
-
-    .invite-steps {
-      display: grid;
-      gap: 16px;
-      margin-top: 12px;
-    }
-
-    .step-box {
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: var(--card);
-      border: 1px solid var(--border);
-    }
-
-    .step-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-
-    .step-box h3 {
-      margin: 0 0 6px;
-      font-size: 1.02rem;
-    }
-
-    .step-box p {
-      margin: 0 0 12px;
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
-
-    .btn-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .qr-panel {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px dashed var(--border);
-    }
-
-    .qr-frame {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 8px;
-      flex-shrink: 0;
-    }
-
-    .qr-frame svg {
-      display: block;
-      width: 140px;
-      height: 140px;
-    }
-
-    .qr-note {
-      flex: 1 1 220px;
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
-
-    .guide-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    details.guide {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px 14px;
-      background: var(--bg);
-    }
-
-    details.guide summary {
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 0.96rem;
-    }
-
-    details.guide ol,
-    details.guide ul {
-      margin: 10px 0 0;
-      padding-left: 20px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    details.guide li { margin-bottom: 6px; }
-    details.guide strong { color: var(--text); }
-
-    code {
-      background: var(--accent-soft);
-      padding: 1px 5px;
-      border-radius: 5px;
-      font-size: 0.86em;
-    }
-
-    .unlocked-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-      font-size: 0.84rem;
-      color: var(--muted);
-    }
-
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.84rem;
-      margin-top: 26px;
+    @media (prefers-reduced-motion: reduce) {
+      .float-chip { animation: none; }
+      .btn, .btn.big:hover { transition: none; transform: none; }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">
-        <img src="./icon.svg" alt="Family Gifts logo" />
-      </div>
-      <div>
-        <h1>Family Gifts</h1>
-        <div class="tagline" id="header-tagline">
-          Private, peer-to-peer family gift lists &middot; Loading latest release&hellip;
-        </div>
-      </div>
-    </header>
+  <!-- Inline icon sprite (same-document references only; no external resources) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+      <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+      <symbol id="i-devices" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+      <symbol id="i-bars" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></symbol>
+    </defs>
+  </svg>
 
-    <div id="global-banner" class="banner hidden"></div>
+  <!-- ===== Hero ===== -->
+  <div class="hero" id="top">
+    <div class="wrap">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Family Gifts home">
+          <span class="logo"><img src="./icon.svg" alt="" /></span>
+          Family Gifts
+        </a>
+        <nav class="topnav" aria-label="Page sections">
+          <a class="link" href="#features" data-scroll>Features</a>
+          <a class="link" href="#how" data-scroll>How it works</a>
+          <a class="link" href="#faq" data-scroll>FAQ</a>
+          <a class="btn" href="#get" data-scroll>Get the app</a>
+        </nav>
+      </header>
 
-    <!-- Invite Mode Hero (only shown when #invite=... is present) -->
-    <section id="invite-section" class="card invite-hero hidden">
-      <h2 id="invite-heading">You've been invited to Family Gifts!</h2>
-      <p class="subtitle" id="invite-subtitle">
-        Follow these two quick steps to install the app and join your family group.
-      </p>
+      <div id="global-banner" class="banner top-banner hidden"></div>
 
-      <div class="invite-steps">
-        <div class="step-box">
-          <div class="step-label">Step 1</div>
-          <h3>Download &amp; install Family Gifts</h3>
-          <p>
-            Pick your device below (your platform is highlighted). After installing, come right
-            back to this browser tab for Step 2.
-          </p>
-          <a href="#downloads-section" class="btn-secondary">Jump to Downloads &darr;</a>
-        </div>
+      <!-- Invite Mode Hero (only shown when #invite=... is present) -->
+      <section id="invite-section" class="card invite-hero hidden">
+        <h2 id="invite-heading">You've been invited to Family Gifts!</h2>
+        <p class="subtitle" id="invite-subtitle">
+          Follow these two quick steps to install the app and join your family group.
+        </p>
 
-        <div class="step-box">
-          <div class="step-label">Step 2</div>
-          <h3 id="invite-step2-title">Open &amp; join your family</h3>
-          <p>
-            Once installed, tap the button below to launch Family Gifts and join automatically.
-            If your browser doesn't open the app, tap <strong>Copy Invite Link</strong>, open
-            Family Gifts, and paste it into <strong>Join via Family Invite</strong>.
-          </p>
-          <div class="btn-row">
-            <a id="btn-open-invite" class="btn" href="#">Open &amp; Join in Family Gifts</a>
-            <button type="button" id="btn-copy-invite" class="btn-secondary">Copy Invite Link</button>
+        <div class="invite-steps">
+          <div class="step-box">
+            <div class="step-label">Step 1</div>
+            <h3>Download &amp; install Family Gifts</h3>
+            <p>
+              Pick your device below (your platform is highlighted). After installing, come right
+              back to this browser tab for Step 2.
+            </p>
+            <a href="#get" class="btn-secondary" data-scroll>Jump to Downloads &darr;</a>
           </div>
-          <div id="invite-copy-status" class="status-msg" style="margin-top:8px;"></div>
 
-          <div class="qr-panel" id="invite-qr-panel">
-            <div class="qr-frame" id="invite-qr-box" aria-label="Invite QR Code"></div>
-            <div class="qr-note">
-              <strong>Opened this on a computer?</strong><br />
-              Point your Android phone's camera at this QR code to open this exact invite page on
-              your phone — no typing needed.
+          <div class="step-box">
+            <div class="step-label">Step 2</div>
+            <h3 id="invite-step2-title">Open &amp; join your family</h3>
+            <p>
+              Once installed, tap the button below to launch Family Gifts and join automatically.
+              If your browser doesn't open the app, tap <strong>Copy Invite Link</strong>, open
+              Family Gifts, and paste it into <strong>Join via Family Invite</strong>.
+            </p>
+            <div class="btn-row">
+              <a id="btn-open-invite" class="btn" href="#">Open &amp; Join in Family Gifts</a>
+              <button type="button" id="btn-copy-invite" class="btn-secondary">Copy Invite Link</button>
+            </div>
+            <div id="invite-copy-status" class="status-msg" style="margin-top:8px;"></div>
+
+            <div class="qr-panel" id="invite-qr-panel">
+              <div class="qr-frame" id="invite-qr-box" aria-label="Invite QR Code"></div>
+              <div class="qr-note">
+                <strong>Opened this on a computer?</strong><br />
+                Point your Android phone's camera at this QR code to open this exact invite page on
+                your phone — no typing needed.
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Friends Access Gate (shown for non-invite visitors when gate is enabled) -->
-    <section id="gate-section" class="card hidden">
-      <h2>Friends &amp; Family Access</h2>
-      <p class="subtitle">
-        Enter your email and the friends passcode to unlock the installers. We only use your email
-        to know who is trying the app and let you know about updates.
-      </p>
-
-      <form id="gate-form" class="gate-form" novalidate>
-        <div class="field">
-          <label for="gate-email">Your email address</label>
-          <input
-            type="email"
-            id="gate-email"
-            autocomplete="email"
-            placeholder="you@example.com"
-            required
-          />
+      <div class="hero-grid marketing">
+        <div>
+          <span class="pill"><span class="dot"></span><span id="header-tagline">Android &middot; Windows &middot; Linux</span></span>
+          <h1 class="headline">Gift ideas for the whole family, <em>without spoiling the surprise.</em></h1>
+          <p class="lede">
+            Keep every family member's wish list in one place. Claim a gift so nobody buys it twice —
+            and the person you're shopping for never sees who got what. No accounts, no cloud.
+          </p>
+          <div class="btn-row">
+            <a class="btn big" href="#get" data-scroll>Get the app</a>
+            <a class="btn-secondary big" href="#how" data-scroll>See how it works</a>
+          </div>
+          <div class="plat-chips" aria-label="Supported platforms">
+            <span class="plat-chip" data-plat="android">Android</span>
+            <span class="plat-chip" data-plat="windows">Windows</span>
+            <span class="plat-chip" data-plat="linux">Linux</span>
+          </div>
         </div>
 
-        <div class="field" id="gate-passcode-field">
-          <label for="gate-passcode">Friends passcode</label>
-          <input
-            type="password"
-            id="gate-passcode"
-            autocomplete="off"
-            placeholder="Enter passcode"
-          />
-          <div class="field-hint" id="gate-passcode-hint"></div>
+        <div class="mock" role="img" aria-label="Illustration of a gift list in Family Gifts showing one gift claimed by Dad, one already purchased, and one still unclaimed.">
+          <div class="phone">
+            <div class="ph-title">Mia's Birthday</div>
+            <div class="ph-sub">3 gift ideas &middot; June 14</div>
+            <div class="ph-item">
+              <div class="ph-thumb">🧱</div>
+              <div class="ph-info"><b>Botanical building set</b><span>$49.99</span></div>
+              <span class="chip claimed">Dad's got it</span>
+            </div>
+            <div class="ph-item">
+              <div class="ph-thumb">👟</div>
+              <div class="ph-info"><b>Trail running shoes</b><span>$120.00</span></div>
+              <span class="chip done">Purchased ✓</span>
+            </div>
+            <div class="ph-item">
+              <div class="ph-thumb">🎨</div>
+              <div class="ph-info"><b>Sketchbook &amp; markers</b><span>$24.00</span></div>
+              <span class="chip open">Unclaimed</span>
+            </div>
+            <div class="ph-note">
+              <svg class="ico"><use href="#i-eye-off" /></svg>
+              Mia can't see any of this.
+            </div>
+          </div>
+          <div class="float-chip a"><svg class="ico"><use href="#i-check" /></svg>No double-buying</div>
+          <div class="float-chip b"><svg class="ico"><use href="#i-lock" /></svg>Private to family</div>
         </div>
-
-        <!-- Honeypot field to block simple spam bots -->
-        <input
-          type="checkbox"
-          id="gate-botcheck"
-          tabindex="-1"
-          autocomplete="off"
-          style="position:absolute;left:-9999px;opacity:0;pointer-events:none;"
-          aria-hidden="true"
-        />
-
-        <div class="btn-row">
-          <button type="submit" id="gate-submit" class="btn">Unlock Downloads</button>
-        </div>
-        <div id="gate-status" class="status-msg"></div>
-      </form>
-    </section>
-
-    <!-- Downloads Section (always displays ALL platforms, highlights detected OS) -->
-    <section id="downloads-section" class="card hidden">
-      <h2>Download Family Gifts</h2>
-      <p class="subtitle" id="downloads-subtitle">
-        All available platforms are listed below. Your detected device is highlighted.
-      </p>
-
-      <div id="platform-note" class="banner warn hidden"></div>
-      <div id="downloads-grid" class="downloads-grid"></div>
-
-      <div id="unlocked-bar" class="unlocked-bar hidden">
-        <span id="unlocked-info"></span>
-        <button type="button" id="btn-relock" class="btn-link">Switch email / lock</button>
       </div>
-    </section>
-
-    <!-- Setup Guide -->
-    <section id="guide-section" class="card">
-      <h2>Quick Setup Guide</h2>
-      <p class="subtitle">
-        Every family creates its own private peer-to-peer vault right on their device — no cloud
-        accounts or passwords required.
-      </p>
-
-      <div class="guide-list">
-        <details class="guide" data-guide="android">
-          <summary>Android installation &amp; updates</summary>
-          <ol>
-            <li>Tap <strong>Download</strong> on the Android APK above and open the finished file.</li>
-            <li>
-              When Android asks, allow <strong>Install unknown apps</strong> for your browser
-              (one-time prompt because Family Gifts is distributed directly, outside Google Play).
-            </li>
-            <li>
-              Open Family Gifts and either tap <strong>Create Family Vault</strong> (to start your
-              own family group) or return to your invite link to join an existing family.
-            </li>
-            <li>
-              <strong>Updating later:</strong> download the new APK and tap <strong>Update</strong>
-              — your gifts and family stay intact.
-            </li>
-          </ol>
-        </details>
-
-        <details class="guide" data-guide="windows">
-          <summary>Windows PC installation</summary>
-          <ol>
-            <li>Download and double-click the Windows <code>.exe</code> installer.</li>
-            <li>
-              If Windows SmartScreen says <em>"Windows protected your PC"</em>, click
-              <strong>More info</strong> &rarr; <strong>Run anyway</strong> (standard warning for
-              indie apps without a commercial signing certificate).
-            </li>
-            <li>
-              Open Family Gifts to start a new family vault or paste/open your family invite.
-            </li>
-          </ol>
-        </details>
-
-        <details class="guide" data-guide="linux">
-          <summary>Linux installation (.deb or .AppImage)</summary>
-          <ul>
-            <li>
-              <strong>Ubuntu / Debian (.deb):</strong> open with Software Install, or run
-              <code>sudo apt install ./Family-Gifts-*.deb</code>.
-            </li>
-            <li>
-              <strong>Universal (.AppImage):</strong> make it executable
-              (<code>chmod +x Family-Gifts-*.AppImage</code>) and run it directly.
-            </li>
-          </ul>
-        </details>
-
-        <details class="guide" data-guide="sync">
-          <summary>How family syncing &amp; spoiler protection work</summary>
-          <ul>
-            <li>
-              <strong>Built-in spoiler protection:</strong> gifts added for you are automatically
-              hidden from you (or have buyer/claim details masked if marked visible).
-            </li>
-            <li>
-              <strong>Peer-to-peer sync:</strong> devices sync directly over encrypted connections.
-              Leaving one PC open (or enabling <strong>Anchor Mode</strong> on Wi-Fi in Family &amp;
-              Settings) helps family members sync smoothly even if they aren't online at the exact
-              same moment.
-            </li>
-          </ul>
-        </details>
-      </div>
-    </section>
-
-    <footer>
-      Family Gifts &middot; Private peer-to-peer gift tracking &middot;
-      Invite links stay strictly inside your browser and are never sent to this server.
-    </footer>
+    </div>
   </div>
+
+  <main>
+    <!-- ===== Features ===== -->
+    <section class="block marketing" id="features">
+      <div class="wrap">
+        <div class="center">
+          <p class="eyebrow">Why families like it</p>
+          <h2 class="section-title">Everything gift-giving needs. Nothing it doesn't.</h2>
+          <p class="section-lede">
+            Built for the way families actually shop for each other — birthdays, holidays, and
+            everything in between.
+          </p>
+        </div>
+        <div class="features">
+          <div class="feature">
+            <div class="ficon"><svg class="ico"><use href="#i-eye-off" /></svg></div>
+            <h3>Spoiler-proof by design</h3>
+            <p>The person you're shopping for never sees who claimed or bought their gifts. You decide, gift by gift, what they get to see.</p>
+          </div>
+          <div class="feature">
+            <div class="ficon"><svg class="ico"><use href="#i-check" /></svg></div>
+            <h3>Claim it, so nobody doubles up</h3>
+            <p>Mark a gift as yours and the rest of the family sees it's covered. Ordered, purchased, wrapped — track it all in a simple shopping checklist.</p>
+          </div>
+          <div class="feature">
+            <div class="ficon"><svg class="ico"><use href="#i-share" /></svg></div>
+            <h3>Add gifts from anywhere</h3>
+            <p>Share from any shopping app on Android, drag a link on your computer, use the browser bookmarklet, or import a whole Amazon wish list at once.</p>
+          </div>
+          <div class="feature">
+            <div class="ficon"><svg class="ico"><use href="#i-lock" /></svg></div>
+            <h3>Private gifts &amp; groups</h3>
+            <p>Planning something with just a few people? Keep gifts private, or use Privacy Groups so only the right relatives see them.</p>
+          </div>
+          <div class="feature">
+            <div class="ficon"><svg class="ico"><use href="#i-devices" /></svg></div>
+            <h3>No accounts, no cloud</h3>
+            <p>Your family's devices sync directly with each other over encrypted connections. There's no sign-up and no company server holding your lists.</p>
+          </div>
+          <div class="feature">
+            <div class="ficon"><svg class="ico"><use href="#i-calendar" /></svg></div>
+            <h3>Occasions &amp; birthdays</h3>
+            <p>Organize ideas by occasion, keep track of birthdays, and give something to the whole family with a shared “Family” recipient.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Spoiler spotlight ===== -->
+    <section class="block alt marketing" id="spoilers">
+      <div class="wrap spot">
+        <div>
+          <p class="eyebrow">The surprise stays a surprise</p>
+          <h2 class="section-title">Everyone sees exactly what they should.</h2>
+          <ul class="ticks">
+            <li>
+              <svg class="ico"><use href="#i-eye-off" /></svg>
+              <span><strong>Claims and purchases are hidden from the recipient.</strong> Not just tucked away — the app never shows them.</span>
+            </li>
+            <li>
+              <svg class="ico"><use href="#i-lock" /></svg>
+              <span><strong>You control what's visible.</strong> A gift idea someone adds for you stays secret unless its creator chooses to show it.</span>
+            </li>
+            <li>
+              <svg class="ico"><use href="#i-check" /></svg>
+              <span><strong>The rest of the family stays in sync.</strong> Everyone else sees what's claimed, so presents don't overlap.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="spot-phones" role="img" aria-label="Side-by-side illustration: the shopper's view of Mia's list shows who claimed each gift, while Mia's own view shows only her list with no claim information.">
+          <figure>
+            <div class="phone">
+              <div class="ph-title">Mia's Birthday</div>
+              <div class="ph-sub">Dad's view</div>
+              <div class="ph-item">
+                <div class="ph-thumb">🧱</div>
+                <div class="ph-info"><b>Building set</b><span>You claimed</span></div>
+                <span class="chip claimed">Yours</span>
+              </div>
+              <div class="ph-item">
+                <div class="ph-thumb">👟</div>
+                <div class="ph-info"><b>Running shoes</b><span>Grandma</span></div>
+                <span class="chip done">Bought ✓</span>
+              </div>
+              <div class="ph-item">
+                <div class="ph-thumb">🎨</div>
+                <div class="ph-info"><b>Sketchbook</b><span>$24.00</span></div>
+                <span class="chip open">Open</span>
+              </div>
+            </div>
+            <figcaption>What the family sees</figcaption>
+          </figure>
+          <figure>
+            <div class="phone">
+              <div class="ph-title">My Wish List</div>
+              <div class="ph-sub">Mia's view</div>
+              <div class="ph-item">
+                <div class="ph-thumb">👟</div>
+                <div class="ph-info"><b>Running shoes</b><span>$120.00</span></div>
+              </div>
+              <div class="ph-item">
+                <div class="ph-thumb">🎨</div>
+                <div class="ph-info"><b>Sketchbook</b><span>$24.00</span></div>
+              </div>
+              <div class="ph-note">
+                <svg class="ico"><use href="#i-eye-off" /></svg>
+                Claims &amp; purchases stay hidden from you.
+              </div>
+            </div>
+            <figcaption>What Mia sees</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== How it works ===== -->
+    <section class="block marketing" id="how">
+      <div class="wrap">
+        <div class="center">
+          <p class="eyebrow">How it works</p>
+          <h2 class="section-title">Up and running in a few minutes</h2>
+          <p class="section-lede">No sign-ups and no passwords — your family creates its own private vault.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <h3>Install the app</h3>
+            <p>Download Family Gifts for Android, Windows or Linux from the section below.</p>
+          </div>
+          <div class="step">
+            <h3>Create or join your family</h3>
+            <p>Start a new family vault, or tap an invite link or QR code from a relative to join theirs. Invites can be sent by email or text.</p>
+          </div>
+          <div class="step">
+            <h3>Add gifts &amp; shop together</h3>
+            <p>Add ideas, claim what you'll buy, and watch your family's devices stay in sync.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Privacy summary ===== -->
+    <section class="block alt marketing" id="privacy-section">
+      <div class="wrap">
+        <div class="center">
+          <p class="eyebrow">Privacy first</p>
+          <h2 class="section-title">Your data stays on your family's devices</h2>
+          <p class="section-lede">Family Gifts has no cloud database, no user accounts, and no ads.</p>
+        </div>
+        <div class="privacy-grid">
+          <div class="pcard">
+            <svg class="ico"><use href="#i-shield" /></svg>
+            <h3>100% local &amp; peer-to-peer</h3>
+            <p>All gift ideas, photos, prices, notes, and family member names live <em>only</em> on your family's devices and sync directly over end-to-end encrypted connections.</p>
+          </div>
+          <div class="pcard">
+            <svg class="ico"><use href="#i-bars" /></svg>
+            <h3>Optional, anonymous stats</h3>
+            <p>To know which platforms need the most attention, the app can send only anonymous aggregate counts during update checks: short one-way hashed group &amp; device tags, device platform, app version, and family member count.</p>
+          </div>
+          <div class="pcard">
+            <svg class="ico"><use href="#i-lock" /></svg>
+            <h3>Never collected, easy to turn off</h3>
+            <p>We never collect names, gift data, photos, invite keys, or IP addresses — and you can turn off anonymous update stats anytime in <strong>Family &amp; Settings</strong> while still receiving updates.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Get the app (gate + downloads) ===== -->
+    <section class="block" id="get">
+      <div class="narrow">
+        <div class="center">
+          <p class="eyebrow">Get the app</p>
+          <h2 class="section-title">Install it in a minute</h2>
+          <p class="section-lede">Available for Android, Windows and Linux.</p>
+        </div>
+
+        <!-- Friends Access Gate (shown for non-invite visitors when gate is enabled) -->
+        <section id="gate-section" class="card hidden">
+          <h2>Friends &amp; Family Access</h2>
+          <p class="subtitle">
+            Family Gifts is currently shared with friends and family. Enter your email and the
+            friends passcode to unlock the installers. We only use your email to know who is trying
+            the app and let you know about updates.
+          </p>
+
+          <form id="gate-form" class="gate-form" novalidate>
+            <div class="field">
+              <label for="gate-email">Your email address</label>
+              <input
+                type="email"
+                id="gate-email"
+                autocomplete="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+
+            <div class="field" id="gate-passcode-field">
+              <label for="gate-passcode">Friends passcode</label>
+              <input
+                type="password"
+                id="gate-passcode"
+                autocomplete="off"
+                placeholder="Enter passcode"
+              />
+              <div class="field-hint" id="gate-passcode-hint"></div>
+            </div>
+
+            <!-- Honeypot field to block simple spam bots -->
+            <input
+              type="checkbox"
+              id="gate-botcheck"
+              tabindex="-1"
+              autocomplete="off"
+              style="position:absolute;left:-9999px;opacity:0;pointer-events:none;"
+              aria-hidden="true"
+            />
+
+            <div class="btn-row">
+              <button type="submit" id="gate-submit" class="btn">Unlock Downloads</button>
+            </div>
+            <div id="gate-status" class="status-msg"></div>
+          </form>
+        </section>
+
+        <!-- Downloads Section (always displays ALL platforms, highlights detected OS) -->
+        <section id="downloads-section" class="card hidden">
+          <h2 id="downloads-heading">Download Family Gifts</h2>
+          <p class="subtitle" id="downloads-subtitle">
+            All available platforms are listed below. Your detected device is highlighted.
+          </p>
+
+          <div id="release-notes-box" class="release-notes hidden">
+            <div class="release-notes-title" id="release-notes-title">What's new</div>
+            <ul id="release-notes-list"></ul>
+          </div>
+
+          <div id="platform-note" class="banner warn hidden"></div>
+          <div id="downloads-grid" class="downloads-grid"></div>
+
+          <div id="unlocked-bar" class="unlocked-bar hidden">
+            <span id="unlocked-info"></span>
+            <button type="button" id="btn-relock" class="btn-link">Switch email / lock</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===== Setup guide ===== -->
+    <section class="block alt" id="guide-section">
+      <div class="narrow">
+        <p class="eyebrow">Setup</p>
+        <h2 class="section-title">Quick setup guide</h2>
+        <p class="section-lede">
+          Every family creates its own private peer-to-peer vault right on their device — no cloud
+          accounts or passwords required.
+        </p>
+
+        <div class="acc-list">
+          <details class="acc guide" data-guide="android">
+            <summary>Android installation &amp; updates</summary>
+            <ol>
+              <li>Tap <strong>Download</strong> on the Android APK above and open the finished file.</li>
+              <li>
+                When Android asks, allow <strong>Install unknown apps</strong> for your browser
+                (one-time prompt because Family Gifts is distributed directly, outside Google Play).
+              </li>
+              <li>
+                Open Family Gifts and either tap <strong>Create Family Vault</strong> (to start your
+                own family group) or return to your invite link to join an existing family.
+              </li>
+              <li>
+                <strong>Updating later:</strong> download the new APK and tap <strong>Update</strong>
+                — your gifts and family stay intact.
+              </li>
+            </ol>
+          </details>
+
+          <details class="acc guide" data-guide="windows">
+            <summary>Windows PC installation</summary>
+            <ol>
+              <li>Download and double-click the Windows <code>.exe</code> installer.</li>
+              <li>
+                If Windows SmartScreen says <em>"Windows protected your PC"</em>, click
+                <strong>More info</strong> &rarr; <strong>Run anyway</strong> (standard warning for
+                indie apps without a commercial signing certificate).
+              </li>
+              <li>
+                Open Family Gifts to start a new family vault or paste/open your family invite.
+              </li>
+            </ol>
+          </details>
+
+          <details class="acc guide" data-guide="linux">
+            <summary>Linux installation (.deb or .AppImage)</summary>
+            <ul>
+              <li>
+                <strong>Ubuntu / Debian (.deb):</strong> open with Software Install, or run
+                <code>sudo apt install ./Family-Gifts-*.deb</code>.
+              </li>
+              <li>
+                <strong>Universal (.AppImage):</strong> make it executable
+                (<code>chmod +x Family-Gifts-*.AppImage</code>) and run it directly.
+              </li>
+            </ul>
+          </details>
+
+          <details class="acc guide" data-guide="sync">
+            <summary>How family syncing &amp; spoiler protection work</summary>
+            <ul>
+              <li>
+                <strong>Built-in spoiler protection:</strong> gifts added for you are automatically
+                hidden from you (or have buyer/claim details masked if marked visible).
+              </li>
+              <li>
+                <strong>Peer-to-peer sync:</strong> devices sync directly over encrypted connections.
+                Leaving one PC open (or enabling <strong>Anchor Mode</strong> on Wi-Fi in Family &amp;
+                Settings) helps family members sync smoothly even if they aren't online at the exact
+                same moment.
+              </li>
+            </ul>
+          </details>
+        </div>
+
+        <!-- ===== FAQ ===== -->
+        <h2 class="sub-head" id="faq">Frequently asked questions</h2>
+        <div class="acc-list">
+          <details class="acc">
+            <summary>Does the person I'm shopping for see what I bought them?</summary>
+            <p>No. When a gift is on your own list, claims, assignments, and purchase status are hidden from you, and you can't edit or claim gifts other people added for you. Whoever adds a gift decides whether it's visible to the recipient at all.</p>
+          </details>
+          <details class="acc">
+            <summary>How do we avoid buying the same gift twice?</summary>
+            <p>Claim a gift and everyone else in the family sees it's taken. Marking a gift Ordered, Purchased, or Wrapped claims it for you automatically if nobody has yet, and the My Shopping list keeps your own checklist in one place.</p>
+          </details>
+          <details class="acc">
+            <summary>Do I need an account or an internet service to use it?</summary>
+            <p>There are no accounts or passwords. Your family's vault lives on your own devices, which sync directly with each other over encrypted connections. If devices aren't online at the same time, leaving one PC open or turning on Anchor Mode helps changes catch up.</p>
+          </details>
+          <details class="acc">
+            <summary>How do I add family members?</summary>
+            <p>Create an invite from within the app and send it by QR code, email, or text. The link opens this page, helps them install the app, and then joins them to your family automatically.</p>
+          </details>
+          <details class="acc">
+            <summary>How do I add a gift from a store website?</summary>
+            <p>On Android, use the Share menu in your browser or shopping app and choose Family Gifts. On a computer, drag the product link into the app or use the Add-to-Family-Gifts bookmarklet. You can also add several links at once, import an Amazon wish list, or paste a photo or screenshot.</p>
+          </details>
+          <details class="acc">
+            <summary>Why does Windows or Android warn me when I install?</summary>
+            <p>Family Gifts is distributed directly rather than through an app store. Android asks you to allow “Install unknown apps” once for your browser, and Windows SmartScreen shows a warning for apps without a commercial signing certificate. The setup guide above walks through both prompts.</p>
+          </details>
+          <details class="acc">
+            <summary>Is Family Gifts free?</summary>
+            <p>Family Gifts is shared with friends and family at no charge, and it contains no ads.</p>
+          </details>
+          <details class="acc">
+            <summary>Is there an iPhone or Mac version?</summary>
+            <p>Not yet. Family Gifts currently runs on Android, Windows, and Linux.</p>
+          </details>
+          <details class="acc">
+            <summary>Why isn't it on Google Play?</summary>
+            <p>Family Gifts is currently distributed directly while it's shared with friends and family, so you install the Android app from a file instead of an app store.</p>
+          </details>
+          <details class="acc">
+            <summary>What information does Family Gifts collect?</summary>
+            <p>Your gifts, photos, and family details stay on your devices. The app can optionally send anonymous aggregate counts during update checks (hashed tags, platform, app version, and family size). It never collects names, gift data, photos, invite keys, or IP addresses, and you can turn the stats off in Family &amp; Settings.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Family Gifts &middot; Private peer-to-peer gift tracking &middot;
+    Invite links stay strictly inside your browser and are never sent to this server.
+  </footer>
 
   <script src="./qrcode.min.js"></script>
   <script>
@@ -684,7 +890,11 @@
         gateSubmit: document.getElementById("gate-submit"),
         gateStatus: document.getElementById("gate-status"),
         downloadsSection: document.getElementById("downloads-section"),
+        downloadsHeading: document.getElementById("downloads-heading"),
         downloadsSubtitle: document.getElementById("downloads-subtitle"),
+        releaseNotesBox: document.getElementById("release-notes-box"),
+        releaseNotesTitle: document.getElementById("release-notes-title"),
+        releaseNotesList: document.getElementById("release-notes-list"),
         platformNote: document.getElementById("platform-note"),
         downloadsGrid: document.getElementById("downloads-grid"),
         unlockedBar: document.getElementById("unlocked-bar"),
@@ -693,6 +903,7 @@
       };
 
       const state = {
+        channel: detectChannel(),
         config: {
           siteUrl: "https://gifts.norbo.ca",
           requireGate: true,
@@ -704,6 +915,15 @@
         platform: detectPlatform(),
         invite: null,
       };
+
+      function detectChannel() {
+        try {
+          const params = new URLSearchParams(window.location.search || "");
+          return (params.get("channel") || "").trim().toLowerCase() === "beta" ? "beta" : "prod";
+        } catch (_) {
+          return "prod";
+        }
+      }
 
       function detectPlatform() {
         const ua = (navigator.userAgent || "").toLowerCase();
@@ -939,12 +1159,35 @@
         els.downloadsSection.classList.remove("hidden");
         els.downloadsGrid.innerHTML = "";
 
+        if (state.channel === "beta") {
+          els.downloadsHeading.textContent = "Download Family Gifts (Beta / Testers)";
+        } else {
+          els.downloadsHeading.textContent = "Download Family Gifts";
+        }
+
+        const notes = (state.releases && Array.isArray(state.releases.notes))
+          ? state.releases.notes.filter((n) => typeof n === "string" && n.trim().length > 0)
+          : [];
+        if (notes.length > 0) {
+          els.releaseNotesTitle.textContent =
+            "What's new" + (state.releases && state.releases.version ? " in v" + state.releases.version : "");
+          els.releaseNotesList.innerHTML = "";
+          for (const line of notes) {
+            const li = document.createElement("li");
+            li.textContent = line;
+            els.releaseNotesList.appendChild(li);
+          }
+          els.releaseNotesBox.classList.remove("hidden");
+        } else {
+          els.releaseNotesBox.classList.add("hidden");
+        }
+
         const detected = state.platform;
         if (detected === "ios" || detected === "macos") {
           els.platformNote.textContent =
-            "Note: " +
+            "Heads up: " +
             platformLabel(detected) +
-            " builds aren't available yet. Family Gifts currently supports Android, Windows, and Linux — all installers are listed below.";
+            " versions aren't available yet. Family Gifts currently runs on Android, Windows, and Linux — all installers are listed below, and you can install it on another device your family uses.";
           els.platformNote.classList.remove("hidden");
         } else {
           els.platformNote.classList.add("hidden");
@@ -1166,6 +1409,7 @@
           try {
             state.invite = parseInviteFromHash();
             if (state.invite) {
+              document.body.classList.add("invite-mode");
               renderInviteMode(state.invite);
             }
           } catch (err) {
@@ -1178,34 +1422,61 @@
           }
         }
 
-        // 2. Load site config & release manifest.
+        // 2. Load site config & release manifest (prod by default, or ?channel=beta for testers).
+        const manifestFile = state.channel === "beta" ? "./releases-beta.json" : "./releases.json";
+        if (state.channel === "beta" && !state.invite) {
+          showBanner(
+            "warn",
+            "Tester / Beta Channel — you are viewing pre-release builds for family testing. Visit gifts.norbo.ca without ?channel=beta for the stable release."
+          );
+        }
         try {
           const [cfg, rel] = await Promise.all([
             loadJson("./config.json"),
-            loadJson("./releases.json"),
+            loadJson(manifestFile),
           ]);
           state.config = Object.assign({}, state.config, cfg || {});
           state.releases = rel;
 
-          const verText = rel && rel.version ? "v" + rel.version : "Latest release";
+          const verText = rel && rel.version
+            ? "Latest: v" + rel.version + (state.channel === "beta" ? " (Beta)" : "")
+            : "Latest release";
           const platText = platformLabel(state.platform);
           els.tagline.textContent =
-            "Private, peer-to-peer family gift lists \u00b7 " +
-            verText +
-            (platText ? " \u00b7 Detected: " + platText : "");
+            verText + (platText ? " \u00b7 " + platText + " detected" : "");
         } catch (err) {
           showBanner(
             "err",
-            "Could not load release info. Refresh the page or try again in a moment."
+            state.channel === "beta"
+              ? "No beta release is published yet. Try the stable release at gifts.norbo.ca."
+              : "Could not load release info. Refresh the page or try again in a moment."
           );
-          els.tagline.textContent = "Private, peer-to-peer family gift lists";
+          els.tagline.textContent = "Android \u00b7 Windows \u00b7 Linux";
         }
 
         configureGate();
       }
 
+      // In-page navigation uses scrollIntoView (not hash changes) so an #invite=... fragment survives.
+      document.querySelectorAll("a[data-scroll]").forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const target = document.getElementById((a.getAttribute("href") || "").slice(1));
+          if (!target) return;
+          e.preventDefault();
+          const calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          target.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "start" });
+        });
+      });
+
+      document.querySelectorAll("[data-plat]").forEach((chip) => {
+        chip.classList.toggle("on", chip.getAttribute("data-plat") === state.platform);
+      });
+
       window.addEventListener("hashchange", () => {
-        window.location.reload();
+        // Only reload when an invite fragment is involved; ordinary anchors should not reset the page.
+        if (state.invite || /invite/i.test(window.location.hash || "")) {
+          window.location.reload();
+        }
       });
 
       boot();
