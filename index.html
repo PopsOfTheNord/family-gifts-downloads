@@ -7,7 +7,7 @@
     http-equiv="Content-Security-Policy"
     content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.web3forms.com;"
   />
-  <meta name="referrer" content="no-referrer" />
+  <meta name="referrer" content="strict-origin" />
   <title>Family Gifts — Download &amp; Setup</title>
   <link rel="icon" type="image/svg+xml" href="./icon.svg" />
   <style>
@@ -1077,15 +1077,21 @@
             new Date().toISOString(),
         };
         try {
-          await fetch("https://api.web3forms.com/submit", {
+          const res = await fetch("https://api.web3forms.com/submit", {
             method: "POST",
+            referrerPolicy: "strict-origin",
             headers: {
               "Content-Type": "application/json",
               Accept: "application/json",
             },
             body: JSON.stringify(payload),
           });
-        } catch (_) {
+          const data = await res.json().catch(() => null);
+          if (!res.ok || !data || !data.success) {
+            console.warn("[Family Gifts] Web3Forms response:", res.status, data);
+          }
+        } catch (err) {
+          console.warn("[Family Gifts] Web3Forms request failed:", err);
           // Do not block a verified friend if the email notification endpoint is momentarily slow.
         }
       }
