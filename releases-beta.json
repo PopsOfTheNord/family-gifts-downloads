@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "channel": "beta",
+  "version": "0.1.5",
+  "minSupportedVersion": "0.1.0",
+  "notes": [],
+  "updatedAt": "2026-11-27T19:27:29Z",
+  "repo": "PopsOfTheNord/family-gifts-downloads",
+  "statsEndpoint": "",
+  "downloads": [
+    {
+      "id": "android-apk",
+      "platform": "android",
+      "title": "Android Phone / Tablet",
+      "subtitle": "Direct install APK (Android 7+)",
+      "badge": "APK",
+      "filename": "Family-Gifts-0.1.5-android-arm64.apk",
+      "version": "0.1.5",
+      "sizeBytes": 40691533,
+      "sizeLabel": "38.8 MB",
+      "sha256": "d0a8a0d4029d12925b8526cd6a8751775c1200e6a6cd13d6fcb4d4bb893b806e",
+      "url": "https://github.com/PopsOfTheNord/family-gifts-downloads/releases/download/v0.1.5/Family-Gifts-0.1.5-android-arm64.apk"
+    },
+    {
+      "id": "windows-exe",
+      "platform": "windows",
+      "title": "Windows PC",
+      "subtitle": "Windows 10 / 11 installer (64-bit)",
+      "badge": "EXE",
+      "filename": "Family-Gifts-0.1.5-windows-x64-setup.exe",
+      "version": "0.1.5",
+      "sizeBytes": 7406997,
+      "sizeLabel": "7.1 MB",
+      "sha256": "0f03f883786d4035608434670102fbff739c8f0f0c2c5ea72fc31d4a5e9acac6",
+      "url": "https://github.com/PopsOfTheNord/family-gifts-downloads/releases/download/v0.1.5/Family-Gifts-0.1.5-windows-x64-setup.exe"
+    },
+    {
+      "id": "linux-deb",
+      "platform": "linux",
+      "title": "Linux (Ubuntu / Debian)",
+      "subtitle": "Native .deb package (64-bit)",
+      "badge": "DEB",
+      "filename": "Family-Gifts-0.1.5-linux-amd64.deb",
+      "version": "0.1.5",
+      "sizeBytes": 14632766,
+      "sizeLabel": "14.0 MB",
+      "sha256": "6ab3c4ec5d1e9c965fb47b45c50024f3c2611e72db36ab0cd355998c49d7668e",
+      "url": "https://github.com/PopsOfTheNord/family-gifts-downloads/releases/download/v0.1.5/Family-Gifts-0.1.5-linux-amd64.deb"
+    },
+    {
+      "id": "linux-appimage",
+      "platform": "linux",
+      "title": "Linux (Universal AppImage)",
+      "subtitle": "Portable executable for most distros (64-bit)",
+      "badge": "AppImage",
+      "filename": "Family-Gifts-0.1.5-linux-amd64.AppImage",
+      "version": "0.1.5",
+      "sizeBytes": 97225208,
+      "sizeLabel": "92.7 MB",
+      "sha256": "ee850308fe0122ab10de2fadd44bbeed1e0095ec4bad0f8477fa1b20b2d87b18",
+      "url": "https://github.com/PopsOfTheNord/family-gifts-downloads/releases/download/v0.1.5/Family-Gifts-0.1.5-linux-amd64.AppImage"
+    }
+  ],
+  "signature": "OSem7z2mItXGXDHmf6rZ77qAUYso9G1Y9+6ZOv0CRRZzmLw3GcDUIPZRUOV/uyBrcyeE0SH1i8lXaFWTweAwBA=="
+}

@@ -660,7 +660,7 @@
         <!-- Friends Access Gate (shown for non-invite visitors when gate is enabled) -->
         <section id="gate-section" class="card hidden">
           <h2>Friends &amp; Family Access</h2>
-          <p class="subtitle">
+          <p class="subtitle" id="gate-subtitle">
             Family Gifts is currently shared with friends and family. Enter your email and the
             friends passcode to unlock the installers. We only use your email to know who is trying
             the app and let you know about updates.
@@ -881,6 +881,7 @@
         inviteQrPanel: document.getElementById("invite-qr-panel"),
         inviteQrBox: document.getElementById("invite-qr-box"),
         gateSection: document.getElementById("gate-section"),
+        gateSubtitle: document.getElementById("gate-subtitle"),
         gateForm: document.getElementById("gate-form"),
         gateEmail: document.getElementById("gate-email"),
         gatePasscodeField: document.getElementById("gate-passcode-field"),
@@ -907,6 +908,7 @@
         config: {
           siteUrl: "https://gifts.norbo.ca",
           requireGate: true,
+          requirePasscode: true,
           passcodeHash: "",
           passcodeHint: "",
           web3formsAccessKey: "",
@@ -1085,8 +1087,17 @@
           .join("");
       }
 
+      function isPasscodeActive() {
+        return (
+          state.config.requirePasscode !== false &&
+          Boolean(state.config.passcodeHash && state.config.passcodeHash.trim())
+        );
+      }
+
       function unlockStorageKey() {
-        const hashKey = (state.config.passcodeHash || "open").toLowerCase();
+        const hashKey = isPasscodeActive()
+          ? state.config.passcodeHash.trim().toLowerCase()
+          : "open";
         return "family_gifts_unlock_" + hashKey.slice(0, 16);
       }
 
@@ -1286,10 +1297,15 @@
       }
 
       function configureGate() {
-        const hasPasscode = Boolean(state.config.passcodeHash && state.config.passcodeHash.trim());
+        const hasPasscode = isPasscodeActive();
         els.gatePasscodeField.classList.toggle("hidden", !hasPasscode);
         els.gatePasscode.required = hasPasscode;
-        els.gatePasscodeHint.textContent = state.config.passcodeHint || "";
+        els.gatePasscodeHint.textContent = hasPasscode ? (state.config.passcodeHint || "") : "";
+        if (els.gateSubtitle) {
+          els.gateSubtitle.textContent = hasPasscode
+            ? "Family Gifts is currently shared with friends and family. Enter your email and the friends passcode to unlock the installers. We only use your email to know who is trying the app and let you know about updates."
+            : "Family Gifts is currently shared with friends and family. Enter your email to unlock the installers. We only use your email to know who is trying the app and let you know about updates.";
+        }
 
         if (state.invite || !state.config.requireGate || getSavedUnlock()) {
           els.gateSection.classList.add("hidden");
@@ -1354,7 +1370,9 @@
           return;
         }
 
-        const expectedHash = (state.config.passcodeHash || "").trim().toLowerCase();
+        const expectedHash = isPasscodeActive()
+          ? state.config.passcodeHash.trim().toLowerCase()
+          : "";
         if (expectedHash) {
           const entered = els.gatePasscode.value.trim().toLowerCase();
           if (!entered) {
